@@ -7,7 +7,7 @@ const cases = [
 ];
 const methods={ours:'Ours','3dgs':'3DGS',difix:'DiFix',artifixer:'ArtiFixer','gsfixer-repair':'GSFixer',panoworld:'PanoWorld'};
 const $=s=>document.querySelector(s), videos=[$('#ours'),$('#baseline')];
-let selected=0, generation=0, action=0, ready=false, playing=false, duration=9, controller;
+let selected=1, generation=0, action=0, ready=false, playing=false, duration=134/30, controller;
 const path=(m)=>`videos/${cases[selected].id}/${m}.mp4`;
 function updateReferences(){const context=['Opening clip · first of three scenes','Apartment walkthrough','Opening clip · living space','Opening clip · bedroom'][selected];$('#reference-context').textContent=context;for(let i=1;i<=2;i++){const p=`panoramas/${cases[selected].id}/reference-${i}.jpg`;const img=$(`#reference-image-${i}`);img.src=p;img.alt=`Reference panorama ${i} · ${context}`;const a=$(`#reference-link-${i}`);a.href=p;a.setAttribute('aria-label',`Open reference panorama ${i} at full resolution`);}}
 function updateTime(){const t=videos[0].currentTime;$('#seek').value=String(t/duration*1000);$('#clock').textContent=`${t.toFixed(1)} / ${duration.toFixed(1)} s`;$('#seek').setAttribute('aria-valuetext',`${t.toFixed(1)} of ${duration.toFixed(1)} seconds`);}
