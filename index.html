@@ -27,9 +27,9 @@
         <button data-case="2" aria-pressed="false">Collection 03<small>Living space</small></button>
         <button data-case="3" aria-pressed="false">Collection 04<small>Bedroom &amp; passage</small></button>
       </nav>
-      <label>Baseline <select id="method"><option value="3dgs">3DGS</option><option value="difix">DiFix</option><option value="artifixer">ArtiFixer</option><option value="gsfixer-repair">GSFixer</option><option value="panoworld">PanoWorld</option></select></label>
+      <label>Baseline <select id="method"><option value="3dgs">3DGS</option><option value="difix">DiFix</option><option value="artifixer" selected>ArtiFixer</option><option value="gsfixer-repair">GSFixer</option><option value="panoworld">PanoWorld</option></select></label>
     </div>
-    <div class="evidence"><h3 id="scene-title">Bedroom → microwave: detail across a room transition</h3><p id="caption" class="caption"></p></div>
+    <div class="evidence"><h3 id="scene-title">Bedroom → microwave: detail across a room transition</h3><p id="caption" class="caption"></p><div id="focus-points"><button data-focus="0.8" disabled>Inspect AC detail · 0.8 s</button><button data-focus="end" disabled>Inspect final view · 4.43 s</button></div></div>
     <div class="references" aria-labelledby="reference-title">
       <div class="reference-heading"><h3 id="reference-title">Reference panoramas</h3><span id="reference-context">Opening clip</span></div>
       <div class="reference-pair">
@@ -40,7 +40,7 @@
     </div>
     <div class="players">
       <figure><figcaption><strong>Ours</strong><a id="download-ours" download>Download video ↗</a></figcaption><video id="ours" muted playsinline preload="metadata" aria-label="Our method"></video></figure>
-      <figure><figcaption><strong id="baseline-name">3DGS</strong><a id="download-baseline" download>Download video ↗</a></figcaption><video id="baseline" muted playsinline preload="metadata" aria-label="Baseline method"></video></figure>
+      <figure><figcaption><strong id="baseline-name">ArtiFixer</strong><a id="download-baseline" download>Download video ↗</a></figcaption><video id="baseline" muted playsinline preload="metadata" aria-label="Baseline method"></video></figure>
     </div>
     <div class="playback">
       <button id="play" disabled>Play both</button><button id="restart" disabled>Restart</button>
