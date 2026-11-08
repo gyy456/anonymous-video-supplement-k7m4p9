@@ -15,27 +15,28 @@
   <header>
     <p class="eyebrow">SUPPLEMENTARY MATERIAL · ANONYMOUS REVIEW</p>
     <h1>Indoor scene reconstruction</h1>
-    <p class="intro">Qualitative video comparisons along matched camera trajectories.</p>
-    <p class="scope">6 scenes <span>·</span> 6 methods <span>·</span> 24 videos</p>
+    <p class="intro">Visual detail and consistency during camera motion.</p>
+    <p class="scope">4 comparison sets <span>·</span> 6 indoor scenes <span>·</span> 6 methods</p>
   </header>
   <section aria-labelledby="compare-title">
-    <div class="section-heading"><h2 id="compare-title">Compare the results</h2><span>Choose a collection and a baseline</span></div>
+    <div class="section-heading"><h2 id="compare-title">Matched-camera comparisons</h2><span>Play both videos to compare the same route</span></div>
     <div class="toolbar">
       <nav aria-label="Video collections" class="cases">
-        <button data-case="1" aria-pressed="true">Collection 02</button>
-        <button data-case="0" aria-pressed="false">Collection 01</button>
-        <button data-case="2" aria-pressed="false">Collection 03</button>
-        <button data-case="3" aria-pressed="false">Collection 04</button>
+        <button data-case="1" aria-pressed="true">Collection 02<small>Bedroom → microwave</small></button>
+        <button data-case="0" aria-pressed="false">Collection 01<small>Three large interiors</small></button>
+        <button data-case="2" aria-pressed="false">Collection 03<small>Living space</small></button>
+        <button data-case="3" aria-pressed="false">Collection 04<small>Bedroom &amp; passage</small></button>
       </nav>
       <label>Baseline <select id="method"><option value="3dgs">3DGS</option><option value="difix">DiFix</option><option value="artifixer">ArtiFixer</option><option value="gsfixer-repair">GSFixer</option><option value="panoworld">PanoWorld</option></select></label>
     </div>
+    <div class="evidence"><h3 id="scene-title">Bedroom → microwave: detail across a room transition</h3><p id="caption" class="caption"></p></div>
     <div class="references" aria-labelledby="reference-title">
       <div class="reference-heading"><h3 id="reference-title">Reference panoramas</h3><span id="reference-context">Opening clip</span></div>
       <div class="reference-pair">
         <figure><a id="reference-link-1" target="_blank" rel="noopener noreferrer"><img id="reference-image-1" width="1600" height="800" alt="Reference panorama 1"></a><figcaption>Reference 1 <span>Open full image ↗</span></figcaption></figure>
         <figure><a id="reference-link-2" target="_blank" rel="noopener noreferrer"><img id="reference-image-2" width="1600" height="800" alt="Reference panorama 2"></a><figcaption>Reference 2 <span>Open full image ↗</span></figcaption></figure>
       </div>
-      <p>Two representative source observations. Each method uses its own reference configuration; these examples do not show every reference used. Apartment panoramas are full-panorama reprojections of the original cube faces.</p>
+      <p>Representative input panoramas. Click either image to inspect the source observations.</p>
     </div>
     <div class="players">
       <figure><figcaption><strong>Ours</strong><a id="download-ours" download>Download video ↗</a></figcaption><video id="ours" muted playsinline preload="metadata" aria-label="Our method"></video></figure>
@@ -48,15 +49,13 @@
       <label class="speed">Speed <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option></select></label>
     </div>
     <p id="status" role="status">Loading videos…</p>
-    <p id="caption" class="caption"></p>
-    <details><summary>Collection details &amp; all video files</summary><p id="note"></p><div id="downloads" class="downloads"></div></details>
+    <details><summary>Clip details &amp; video files</summary><p id="note"></p><div id="downloads" class="downloads"></div></details>
   </section>
-  <section class="notes" aria-labelledby="scope-title">
-    <h2 id="scope-title">Scope of these comparisons</h2>
-    <p>These four collections cover six distinct scenes. They provide qualitative context and do not cover every scene in the quantitative evaluation.</p>
-    <p>Camera trajectories are matched within each collection. Methods retain their respective input, reference, and training settings; the videos should be interpreted with those differences in mind. Collection details identify intentional cuts and relevant training-split information.</p>
-  </section>
-  <footer>Anonymous supplementary material · No analytics, external embeds, or third-party fonts are included in this page.</footer>
+  <details class="protocol"><summary>Scene coverage &amp; comparison protocol</summary>
+    <p>Collection 01 contains three distinct scenes; Collections 02–04 each contain one: 3 + 1 + 1 + 1 = 6 scenes. Each set compares six methods along matched camera paths. These qualitative examples do not cover the full quantitative evaluation.</p>
+    <p>Native inputs, reference budgets and training conditions differ across methods. The two panoramas are representative observations, not each method's complete reference set. Apartment panoramas are reprojections of the original cube faces. Training-split information and intentional cuts are listed in the clip details.</p>
+  </details>
+  <footer>Anonymous supplementary video comparisons.</footer>
 </main>
 </body>
 </html>
