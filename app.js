@@ -14,8 +14,14 @@ const $=s=>document.querySelector(s), videos=[$('#ours'),$('#baseline')];
 let selected=Math.max(0,cases.findIndex(c=>c.id===location.hash.slice(1))), generation=0, action=0, ready=false, playing=false, duration=134/30, controller;
 if(!cases.some(c=>c.id===location.hash.slice(1)))selected=1;
 const path=m=>`videos/${cases[selected].id}/${m}.mp4`;
-const mediaCache=new Map();
-async function mediaURL(src,signal){if(mediaCache.has(src))return mediaCache.get(src);const response=await fetch(src,{signal});if(!response.ok)throw new Error('load');const blob=await response.blob();if(signal.aborted)throw new DOMException('Cancelled','AbortError');const url=URL.createObjectURL(blob);mediaCache.set(src,url);return url;}
+const mediaCache=new Map(),mediaRequests=new Map();
+// Static first-party bundles work with the anonymous host's opaque-origin policy.
+window.registerVideo=(src,encoded)=>{const binary=atob(encoded),bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);mediaCache.set(src,URL.createObjectURL(new Blob([bytes],{type:'video/mp4'})));};
+async function mediaURL(src,signal){
+ if(mediaCache.has(src))return mediaCache.get(src);
+ if(!mediaRequests.has(src)){const request=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=src.replace(/\.mp4$/,'.data.js');script.async=true;script.onload=()=>{script.remove();mediaCache.has(src)?resolve(mediaCache.get(src)):reject(new Error('load'));};script.onerror=()=>{script.remove();reject(new Error('load'));};document.head.append(script);});mediaRequests.set(src,request);request.finally(()=>mediaRequests.delete(src)).catch(()=>{});}
+ const url=await mediaRequests.get(src);if(signal.aborted)throw new DOMException('Cancelled','AbortError');return url;
+}
 window.addEventListener('pagehide',e=>{if(e.persisted)return;for(const url of mediaCache.values())URL.revokeObjectURL(url);mediaCache.clear();});
 const available=()=>Object.entries(methods).filter(([k])=>selected===4||!['noposplat','panosplatt3r'].includes(k));
 function updateMethods(){const before=$('#method').value;$('#method').replaceChildren(...available().filter(([k])=>k!=='ours').map(([key,name])=>{const o=document.createElement('option');o.value=key;o.textContent=name;return o;}));$('#method').value=available().some(([k])=>k===before)?before:'artifixer';}
