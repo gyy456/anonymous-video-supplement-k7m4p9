@@ -7,3 +7,5 @@ Collection 02 demonstrates structural consistency as the camera moves through th
 All comparisons use matched target cameras. Native inputs, reference budgets and training conditions differ. NoPoSplat receives two perspective crops; PanoSplatt3R receives two complete panoramas bracketing the route. This is not an equal-input benchmark, and these qualitative videos do not cover the full quantitative evaluation. Relevant protocol details are on the page.
 
 No analytics, external embeds, author links or third-party fonts are included.
+
+The experimental-details page (`notes.html`) discusses direct Gaussian predictors and their possible integration, audited dataset distributions, verification outcomes, and model-training and per-environment costs. Its LRM discussion distinguishes the observed pose inconsistency from the unevaluated initialization-and-refinement extension.
