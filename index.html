@@ -8,7 +8,7 @@
   <meta name="description" content="Anonymous supplementary video comparisons of indoor scene reconstruction.">
   <title>Anonymous Video Supplement</title>
   <link rel="stylesheet" href="style.css">
-  <script src="app.js?v=selected-tail-52" defer></script>
+  <script src="app.js?v=ordered-collections-v1" defer></script>
 </head>
 <body>
 <main>
@@ -22,11 +22,11 @@
     <div class="section-heading"><h2 id="compare-title">Matched-camera comparisons</h2><span>Play both videos to compare the same route</span></div>
     <div class="toolbar">
       <nav aria-label="Video collections" class="cases">
-        <button data-case="1" aria-pressed="true">Collection 02<small>Bedroom → microwave</small></button>
-        <button data-case="4" aria-pressed="false">Collection 05<small>Corridor → bedroom · 5.2 s</small></button>
-        <button data-case="0" aria-pressed="false">Collection 01<small>Three large interiors</small></button>
-        <button data-case="2" aria-pressed="false">Collection 03<small>Living space</small></button>
-        <button data-case="3" aria-pressed="false">Collection 04<small>Bedroom &amp; passage</small></button>
+        <button data-case="1" aria-pressed="true">Collection 01<small>Bedroom → microwave</small></button>
+        <button data-case="4" aria-pressed="false">Collection 02<small>Corridor → bedroom · 5.2 s</small></button>
+        <button data-case="0" aria-pressed="false">Collection 03<small>Three large interiors</small></button>
+        <button data-case="2" aria-pressed="false">Collection 04<small>Living space</small></button>
+        <button data-case="3" aria-pressed="false">Collection 05<small>Bedroom &amp; passage</small></button>
       </nav>
       <label>Baseline <select id="method"><option value="3dgs">3DGS</option><option value="difix">DiFix</option><option value="artifixer" selected>ArtiFixer</option><option value="gsfixer-repair">GSFixer</option><option value="panoworld">PanoWorld</option></select></label>
     </div>
@@ -58,8 +58,8 @@
     <details><summary>Clip details &amp; video files</summary><p id="note"></p><div id="downloads" class="downloads"></div></details>
   </section>
   <details class="protocol"><summary>Scene coverage &amp; comparison protocol</summary>
-    <p>Collection 01 contains three distinct scenes. Collections 02 and 03 each add one scene; Collections 04 and 05 show different trajectories in the same scene: six distinct scenes in total. Collections 01–04 compare six methods; Collection 05 compares eight methods. All comparisons use matched target-camera paths. These selected qualitative examples do not cover the full quantitative evaluation.</p>
-    <p>Native inputs, reference budgets and training conditions differ across methods. Displayed panoramas are representative observations, not each method’s complete reference set. Collection 05 additionally includes two-endpoint LRM results with substantially different input coverage. Apartment panoramas are reprojections of the original cube faces. Training-split information and intentional cuts are listed in the clip details.</p>
+    <p>Collection 03 contains three distinct scenes. Collections 01 and 04 each add one scene; Collections 02 and 05 show different trajectories in the same scene: six distinct scenes in total. Collection 02 compares eight methods; the other collections compare six methods. All comparisons use matched target-camera paths. These selected qualitative examples do not cover the full quantitative evaluation.</p>
+    <p>Native inputs, reference budgets and training conditions differ across methods. Displayed panoramas are representative observations, not each method’s complete reference set. Collection 02 additionally includes two-endpoint LRM results with substantially different input coverage. Apartment panoramas are reprojections of the original cube faces. Training-split information and intentional cuts are listed in the clip details.</p>
   </details>
   <footer>Anonymous supplementary video comparisons.</footer>
 </main>
