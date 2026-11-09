@@ -4,8 +4,10 @@ Qualitative indoor reconstruction comparisons: 32 videos across six distinct sce
 
 Collection 02 demonstrates structural consistency as the camera moves through the corridor into a bedroom. The reconstruction uses broader scene observations.
 
-All comparisons use matched target cameras. Native inputs, reference budgets and training conditions differ. NoPoSplat receives two perspective crops; PanoSplatt3R receives two complete panoramas bracketing the route. This is not an equal-input benchmark, and these qualitative videos do not cover the full quantitative evaluation. Relevant protocol details are on the page.
+All comparisons use matched target cameras. Native inputs, reference budgets and training conditions differ. NoPoSplat receives two perspective crops; PanoSplatt3R receives two adjacent overlapping complete panoramas along the route. This is not an equal-input benchmark, and these qualitative videos do not cover the full quantitative evaluation. Relevant protocol details are on the page.
 
 No analytics, external embeds, author links or third-party fonts are included.
 
-The experimental-details page (`notes.html`) discusses direct Gaussian predictors and their possible integration, audited dataset distributions, verification outcomes, and model-training and per-environment costs. Its LRM discussion distinguishes the observed pose inconsistency from the unevaluated initialization-and-refinement extension.
+The experimental-details page (`notes.html`) discusses direct Gaussian predictors and their possible integration, audited dataset distributions, verification outcomes, and model-training and per-environment costs. Its LRM discussion documents the native prediction setup and the proposed initialization-and-refinement extension.
+
+The revised LRM comparison uses two adjacent original panoramas separated by 1.086 m, with the same 156 target cameras. PanoSplatt3R uses the complete ERPs and official scale recovery; NoPoSplat uses two corridor-facing 90-degree crops. The later bedroom views extend beyond the shared coverage of those crops. Analysis and matched full frames are in analysis.html; numeric camera/input configuration is in comparison-protocol.json.

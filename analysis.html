@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Anonymous supplementary frame comparisons along a corridor-to-bedroom camera trajectory.">
+  <title>Cross-room Comparisons · Anonymous Supplement</title>
+  <link rel="stylesheet" href="style.css?v=experimental-details-v1">
+  <style>
+    .frame-analysis{max-width:1220px}
+    .analysis-lead{max-width:850px}
+    .frame-section{padding-top:28px;margin-top:36px;border-top:1px solid #dce2dd;scroll-margin-top:24px}
+    .frame-section h2{font-size:25px;line-height:1.3}
+    .frame-description{font-size:14px;line-height:1.7;color:#526159;max-width:850px}
+    .frame-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:22px 0}
+    .frame-grid figure{min-width:0}
+    .frame-grid figcaption{display:block;padding:0 0 10px;font-size:14px;font-weight:700;color:#273c35}
+    .frame-grid img{display:block;width:100%;height:auto;aspect-ratio:1;background:#e7ebe6;border:1px solid #dce2dd;border-radius:4px}
+    .frame-grid a{display:block}
+    .frame-meta{display:block;margin-top:4px;font-size:11px;font-weight:400;color:#69766d}
+    .frame-links{display:flex;gap:12px 24px;flex-wrap:wrap;font-size:12px;line-height:1.6}
+    .frame-protocol{margin-top:36px;padding:24px 0 0;border-top:1px solid #dce2dd;scroll-margin-top:24px}
+    .frame-protocol h2{font-size:24px}
+    .frame-protocol p{font-size:14px;line-height:1.75;color:#47594e;max-width:920px}
+    .frame-protocol .table-note{font-size:12px;color:#69766d}
+    @media(max-width:720px){.frame-grid{grid-template-columns:1fr;gap:25px;max-width:512px;margin:22px auto}.frame-grid figcaption{font-size:15px}.frame-section h2,.frame-protocol h2{font-size:22px}}
+  </style>
+</head>
+<body>
+<main class="frame-analysis">
+  <header>
+    <p class="eyebrow">SUPPLEMENTARY MATERIAL · ANONYMOUS REVIEW</p>
+    <h1>Cross-room frame comparisons</h1>
+    <p class="intro analysis-lead">Ours and PanoSplatt3R at corresponding target views along the corridor-to-bedroom trajectory in Collection 02.</p>
+    <nav class="page-links" aria-label="Supplement sections">
+      <a href="index.html#case-05">Watch Collection 02</a>
+      <a href="#corridor">Corridor · 1.50 s</a>
+      <a href="#bedroom">Bedroom · 4.00 s</a>
+      <a href="#protocol">Comparison protocol</a>
+      <a href="notes.html#gaussian-predictors">Experimental details</a>
+    </nav>
+  </header>
+
+  <section id="corridor" class="frame-section" aria-labelledby="corridor-title">
+    <p class="eyebrow">FRAME 45 · 1.50 SECONDS</p>
+    <h2 id="corridor-title">Corridor and doorway structure</h2>
+    <p class="frame-description">Both views show the corridor at the same target-camera pose. Compare the door frames and ceiling contours: PanoSplatt3R retains the room layout, with softer and locally wavy edges, while our output preserves clearer boundaries.</p>
+    <div class="frame-grid">
+      <figure>
+        <figcaption>Ours<span class="frame-meta">Scene reconstruction and reference views</span></figcaption>
+        <a href="figures/aligned-comparison/corridor-ours.png" target="_blank" rel="noopener noreferrer"><img src="figures/aligned-comparison/corridor-ours.png" width="512" height="512" alt="Our corridor view at 1.50 seconds"></a>
+      </figure>
+      <figure>
+        <figcaption>PanoSplatt3R<span class="frame-meta">Two complete panoramas</span></figcaption>
+        <a href="figures/aligned-comparison/corridor-panosplatt3r.png" target="_blank" rel="noopener noreferrer"><img src="figures/aligned-comparison/corridor-panosplatt3r.png" width="512" height="512" alt="PanoSplatt3R corridor view at the same target pose"></a>
+      </figure>
+    </div>
+  </section>
+
+  <section id="bedroom" class="frame-section" aria-labelledby="bedroom-title">
+    <p class="eyebrow">FRAME 120 · 4.00 SECONDS</p>
+    <h2 id="bedroom-title">Bedroom layout and object boundaries</h2>
+    <p class="frame-description">After the camera enters the bedroom, compare the window frame, bed outline, and wall–floor boundaries. The PanoSplatt3R result shows softened detail and uneven contours; these structures remain more clearly defined in our output.</p>
+    <div class="frame-grid">
+      <figure>
+        <figcaption>Ours<span class="frame-meta">Scene reconstruction and reference views</span></figcaption>
+        <a href="figures/aligned-comparison/bedroom-ours.png" target="_blank" rel="noopener noreferrer"><img src="figures/aligned-comparison/bedroom-ours.png" width="512" height="512" loading="lazy" alt="Our bedroom view at 4.00 seconds"></a>
+      </figure>
+      <figure>
+        <figcaption>PanoSplatt3R<span class="frame-meta">Two complete panoramas</span></figcaption>
+        <a href="figures/aligned-comparison/bedroom-panosplatt3r.png" target="_blank" rel="noopener noreferrer"><img src="figures/aligned-comparison/bedroom-panosplatt3r.png" width="512" height="512" loading="lazy" alt="PanoSplatt3R bedroom view at the same target pose"></a>
+      </figure>
+    </div>
+    <p class="frame-links"><a href="index.html#case-05">Inspect the complete camera transition in Collection 02 →</a></p>
+  </section>
+
+  <section class="frame-section" aria-labelledby="path-title">
+    <h2 id="path-title">Inputs and target-camera positions</h2>
+    <p class="frame-description">The two input panoramas are 1.086 m apart. The shared 2.58 m trajectory passes through the corridor and continues into the bedroom. The two highlighted target views are at locations distinct from both inputs. Arrows indicate viewing directions in this top view.</p>
+    <a href="figures/aligned-comparison/camera-path.png" target="_blank" rel="noopener noreferrer"><img src="figures/aligned-comparison/camera-path.png" alt="Top view of the shared camera path, two input panoramas, and the corridor and bedroom target positions" style="width:100%;max-width:850px;height:auto;display:block;margin:20px auto" loading="lazy"></a>
+    <p class="frame-links"><a href="comparison-protocol.json">Camera and input configuration (JSON)</a></p>
+  </section>
+
+  <section id="protocol" class="frame-protocol" aria-labelledby="protocol-title">
+    <h2 id="protocol-title">Comparison protocol</h2>
+    <p>Collection 02 uses a shared target-camera trajectory, a 512 × 512 image resolution, and a 90° field of view. The two rows show corresponding frames at 1.50 s and 4.00 s of the 30 fps videos. Click any image to inspect the full-resolution frame.</p>
+    <div class="table-wrap"><table>
+      <caption>Inputs and outputs shown</caption>
+      <thead><tr><th scope="col">Method</th><th scope="col">Input setting</th><th scope="col">Displayed output</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Ours</th><td>Broader scene observations and real reference views</td><td>Restored novel-view sequence</td></tr>
+        <tr><th scope="row">PanoSplatt3R</th><td>Two overlapping, complete equirectangular panoramas along the route</td><td>Rendering of the predicted Gaussian representation</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>PanoSplatt3R setup.</strong> We use the released checkpoint in its native two-panorama configuration with <a href="panoramas/case-05/reference-2.jpg" target="_blank" rel="noopener noreferrer">Reference 2</a> and <a href="panoramas/case-05/reference-3.jpg" target="_blank" rel="noopener noreferrer">Reference 3</a>, two overlapping original panoramas with a camera baseline of 1.086 m. The prediction remains in its native first-camera coordinate frame; known input-camera poses provide the frame alignment and metric scale following the model’s scale-recovery protocol. Target images are not used to fit the Gaussians or camera alignment.</p>
+    <p>All 156 target cameras are shared with Collection 02. Our method uses broader scene observations and reference views, so input coverage and training conditions differ. The gallery also compares the restored outputs of DiFix, ArtiFixer, GSFixer, and PanoWorld along this route.</p>
+    <p class="table-note">Frame numbers are zero-based. Full frames are shown; the comparison layout does not crop or retouch image content.</p>
+  </section>
+
+  <footer>Anonymous supplementary comparisons. <a href="index.html">Return to the video gallery</a>.</footer>
+</main>
+</body>
+</html>

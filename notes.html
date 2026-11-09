@@ -15,7 +15,7 @@
     <p class="eyebrow">SUPPLEMENTARY MATERIAL · ANONYMOUS REVIEW</p>
     <h1>Experimental details</h1>
     <p class="intro">Direct Gaussian predictors, dataset characterization, and computational cost.</p>
-    <nav class="page-links" aria-label="Supplement sections"><a href="index.html">Video comparisons</a><a href="#gaussian-predictors">Gaussian predictors</a><a href="#dataset-statistics">Dataset statistics</a><a href="#verification">Verification</a><a href="#training-cost">Training &amp; cost</a></nav>
+    <nav class="page-links" aria-label="Supplement sections"><a href="index.html">Video comparisons</a><a href="analysis.html">Cross-room frame analysis</a><a href="#gaussian-predictors">Gaussian predictors</a><a href="#dataset-statistics">Dataset statistics</a><a href="#verification">Verification</a><a href="#training-cost">Training &amp; cost</a></nav>
   </header>
 
   <section id="gaussian-predictors" class="research-section" aria-labelledby="lrm-title">
@@ -28,13 +28,14 @@
       <caption>Inputs for the direct-prediction comparison</caption>
       <thead><tr><th scope="col">Method</th><th scope="col">Input and reconstruction setting</th></tr></thead>
       <tbody>
-        <tr><th scope="row">PanoSplatt3R</th><td>Two complete panoramas bracketing the route; released model in its native two-panorama setting.</td></tr>
-        <tr><th scope="row">NoPoSplat</th><td>Two perspective crops from the same endpoint panoramas, rather than complete panoramic inputs.</td></tr>
+        <tr><th scope="row">PanoSplatt3R</th><td>Two overlapping, complete equirectangular panoramas along the route (References 2 and 3; 1.086 m baseline); released model in its native two-panorama setting.</td></tr>
+        <tr><th scope="row">NoPoSplat</th><td>Two 90° perspective crops from the same adjacent panoramas (References 2 and 3), oriented toward the corridor.</td></tr>
         <tr><th scope="row">Ours</th><td>A scene-level reconstruction using broader scene observations and real reference views.</td></tr>
       </tbody>
     </table></div>
-    <p>In this example, PanoSplatt3R's predicted relative pose is inconsistent between its two input views: alignment near one input does not yield a consistent reconstruction throughout the route. Our result preserves a more coherent corridor-to-bedroom transition. We checked the rendering adapter against the official pinhole renderer; the first target frame was pixel-identical. Trials with a common input orientation and reversed input order did not resolve alignment over the whole route. The gallery retains the original released-model result.</p>
+    <p>PanoSplatt3R uses two overlapping original panoramas and the released checkpoint. Known input-camera poses align its native first-camera coordinate frame and recover metric scale; target images are not used to fit the Gaussians or camera alignment. At the corresponding corridor and bedroom views, its output retains the scene layout but shows softer detail and locally uneven edges. Our output preserves clearer doorway, window, and bed contours. See the <a href="analysis.html">matched frames and comparison protocol</a> for the two selected views and input panorama links.</p>
     <p>These observations identify a challenge for pairwise prediction in sparse multi-room scenes. The methods use different input coverage and training conditions, so this is a qualitative comparison, not an equal-input benchmark or a general ranking of LRM architectures.</p>
+    <p>NoPoSplat uses its released two-view checkpoint and the input-pose coordinate frame with unit-baseline scale recovery. Its two perspective inputs have narrower coverage than the complete panoramas; the later bedroom views extend beyond their shared input coverage.</p>
     <h3>How it could fit into the framework</h3>
     <ol class="integration-steps">
       <li><strong>Predict:</strong> obtain Gaussian representations from panorama pairs.</li>
