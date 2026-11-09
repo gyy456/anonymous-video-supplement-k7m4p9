@@ -1,9 +1,9 @@
 # Anonymous Video Supplement
 
-Qualitative indoor scene reconstruction comparisons: 24 videos, six methods, and six distinct scenes arranged in four collections. Each collection includes two representative reference panoramas.
+Qualitative indoor reconstruction comparisons: 32 videos across seven distinct scenes in five collections. Collections 01–04 compare six methods; Collection 05 compares eight. The gallery contains 13 original panorama images, the fixed eight-view reference sheet for Collection 05, and an illustrative brightness-flicker flowchart.
 
-Use the accompanying anonymous website for synchronized comparisons. The `videos` and `panoramas` folders contain the standalone media files.
+Use the website for synchronized matched-camera comparisons and the media folders for individual files. The 13-second Collection 05 preserves all 389 target frames at 30 fps, continuously passing five panorama locations. Its underlying reconstruction uses broader scene observations.
 
-These materials cover six scenes and do not cover every scene in the quantitative evaluation. Camera trajectories are matched within a collection; input configurations and training conditions differ between methods. Please see the collection notes on the website for relevant details.
+Native inputs, reference budgets, training conditions and reconstruction methods differ. Collection 05 includes two-endpoint LRM results: NoPoSplat receives two perspective crops; PanoSplatt3R receives two complete panoramas. This is not an equal-input benchmark. Qualitative examples do not cover the full quantitative evaluation. Remaining artifacts and relevant protocol details are visible on the page.
 
-No analytics, external embeds, or third-party fonts are included.
+No analytics, external embeds, author links or third-party fonts are included.
