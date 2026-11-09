@@ -8,7 +8,7 @@
   <meta name="description" content="Anonymous supplementary video comparisons of indoor scene reconstruction.">
   <title>Anonymous Video Supplement</title>
   <link rel="stylesheet" href="style.css">
-  <script src="app.js?v=static-media-v1" defer></script>
+  <script src="app.js?v=selected-tail-52" defer></script>
 </head>
 <body>
 <main>
@@ -16,14 +16,14 @@
     <p class="eyebrow">SUPPLEMENTARY MATERIAL · ANONYMOUS REVIEW</p>
     <h1>Indoor scene reconstruction</h1>
     <p class="intro">Visual detail and consistency during camera motion.</p>
-    <p class="scope">5 comparison sets <span>·</span> 7 indoor scenes <span>·</span> up to 8 methods</p>
+    <p class="scope">5 comparison sets <span>·</span> 6 indoor scenes <span>·</span> up to 8 methods</p>
   </header>
   <section aria-labelledby="compare-title">
     <div class="section-heading"><h2 id="compare-title">Matched-camera comparisons</h2><span>Play both videos to compare the same route</span></div>
     <div class="toolbar">
       <nav aria-label="Video collections" class="cases">
         <button data-case="1" aria-pressed="true">Collection 02<small>Bedroom → microwave</small></button>
-        <button data-case="4" aria-pressed="false">Collection 05<small>Continuous multi-room · 13 s</small></button>
+        <button data-case="4" aria-pressed="false">Collection 05<small>Corridor → bedroom · 5.2 s</small></button>
         <button data-case="0" aria-pressed="false">Collection 01<small>Three large interiors</small></button>
         <button data-case="2" aria-pressed="false">Collection 03<small>Living space</small></button>
         <button data-case="3" aria-pressed="false">Collection 04<small>Bedroom &amp; passage</small></button>
@@ -38,7 +38,6 @@
         <figure><a id="reference-link-2" target="_blank" rel="noopener noreferrer"><img id="reference-image-2" width="1600" height="800" alt="Reference panorama 2"></a><figcaption>Reference 2 <span>Open full image ↗</span></figcaption></figure>
       </div>
       <p id="reference-note">Representative input panoramas. Click an image to inspect the source observations.</p>
-      <a id="fixed-reference-link" href="panoramas/case-05/fixed-reference-views.jpg" target="_blank" rel="noopener noreferrer" hidden>Inspect our fixed eight reference views ↗</a>
     </div>
     <div class="players">
       <figure><figcaption><strong>Ours</strong><a id="download-ours" download>Download video ↗</a></figcaption><video id="ours" muted playsinline preload="metadata" aria-label="Our method"></video></figure>
@@ -52,15 +51,14 @@
     </div>
     <p id="status" role="status">Loading videos…</p>
     <aside id="remaining-limitations" class="limitations" hidden>
-      <h3>Remaining limitations</h3>
-      <p>Thin chair legs can show slight ghosting, and some fine detail remains soft. Limited or occluded reference information may contribute.</p>
+      <h3>Segment transitions</h3>
       <p>Input panoramas may differ in exposure or illumination. When a long route is generated in segments, these differences can produce a brief brightness change at the joins, as illustrated below.</p>
       <a href="figures/brightness-flicker-flow.svg" target="_blank" rel="noopener noreferrer"><img src="figures/brightness-flicker-flow.png" width="2376" height="585" alt="Possible flicker mechanism: panorama exposure differences, segment-wise generation, then brightness changes at joins."></a>
     </aside>
     <details><summary>Clip details &amp; video files</summary><p id="note"></p><div id="downloads" class="downloads"></div></details>
   </section>
   <details class="protocol"><summary>Scene coverage &amp; comparison protocol</summary>
-    <p>Collection 01 contains three distinct scenes; Collections 02–05 each contain one: seven scenes in total. Collections 01–04 compare six methods; Collection 05 compares eight methods. All comparisons use matched target-camera paths. These selected qualitative examples do not cover the full quantitative evaluation.</p>
+    <p>Collection 01 contains three distinct scenes. Collections 02 and 03 each add one scene; Collections 04 and 05 show different trajectories in the same scene: six distinct scenes in total. Collections 01–04 compare six methods; Collection 05 compares eight methods. All comparisons use matched target-camera paths. These selected qualitative examples do not cover the full quantitative evaluation.</p>
     <p>Native inputs, reference budgets and training conditions differ across methods. Displayed panoramas are representative observations, not each method’s complete reference set. Collection 05 additionally includes two-endpoint LRM results with substantially different input coverage. Apartment panoramas are reprojections of the original cube faces. Training-split information and intentional cuts are listed in the clip details.</p>
   </details>
   <footer>Anonymous supplementary video comparisons.</footer>
