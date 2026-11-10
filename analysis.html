@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
-  <meta name="description" content="Anonymous supplementary frame comparisons along a corridor-to-bedroom camera trajectory.">
-  <title>Cross-room Comparisons · Anonymous Supplement</title>
+  <meta name="description" content="Why a two-panorama predictor does not directly scale to dense multi-panorama scenes, with matched cross-room comparisons.">
+  <title>Two-Panorama Prediction vs. Multi-Panorama Scenes · Anonymous Supplement</title>
   <link rel="stylesheet" href="style.css?v=experimental-details-v1">
   <style>
     .frame-analysis{max-width:1220px}
     .analysis-lead{max-width:850px}
+    .scope-callout{margin-top:30px;padding:24px 26px;background:#edf3ee;border-left:4px solid #346653;max-width:980px}
+    .scope-callout h2{margin:0 0 12px;font-size:28px;line-height:1.25;color:#203d30}
+    .scope-callout p{margin:10px 0;font-size:15px;line-height:1.75;color:#3f5549}
+    .scope-callout strong{color:#203d30}
     .frame-section{padding-top:28px;margin-top:36px;border-top:1px solid #dce2dd;scroll-margin-top:24px}
     .frame-section h2{font-size:25px;line-height:1.3}
     .frame-description{font-size:14px;line-height:1.7;color:#526159;max-width:850px}
@@ -32,16 +36,24 @@
 <main class="frame-analysis">
   <header>
     <p class="eyebrow">SUPPLEMENTARY MATERIAL · ANONYMOUS REVIEW</p>
-    <h1>Cross-room frame comparisons</h1>
-    <p class="intro analysis-lead">Ours and PanoSplatt3R at corresponding target views along the corridor-to-bedroom trajectory in Collection 02.</p>
+    <h1>Two-Panorama Prediction vs. Multi-Panorama Scenes</h1>
+    <p class="intro analysis-lead">A matched-camera comparison of PanoSplatt3R and our result along a continuous corridor-to-bedroom trajectory.</p>
     <nav class="page-links" aria-label="Supplement sections">
       <a href="index.html#case-05">Watch Collection 02</a>
+      <a href="#scope">Why the input regime matters</a>
       <a href="#corridor">Corridor · 1.50 s</a>
       <a href="#bedroom">Bedroom · 4.00 s</a>
       <a href="#protocol">Comparison protocol</a>
       <a href="notes.html#gaussian-predictors">Experimental details</a>
     </nav>
   </header>
+
+  <section id="scope" class="scope-callout" aria-labelledby="scope-title">
+    <h2 id="scope-title">A two-panorama model does not directly solve a 20-panorama scene</h2>
+    <p><strong>PanoSplatt3R is evaluated here in its native two-complete-panorama setting.</strong> That is useful for a controlled direct-prediction comparison, but it is a much narrower input regime than the multi-room scenes targeted by our framework. A typical scene in our collection can contain around 20 source panoramas, including views distributed across several rooms.</p>
+    <p>Extending a two-view predictor to that setting would require running it over many panorama pairs and bringing the resulting local Gaussian sets into one common scene. This introduces pairwise pose and scale estimation, point-cloud or Gaussian alignment, and a global consistency problem as the pairwise results are fused. Small relative-pose or scale errors can accumulate across the chain, especially when adjacent pairs have weak overlap. Our framework instead operates on the scene-level multi-panorama reconstruction and its global coordinate frame.</p>
+    <p>The matched frames below show the practical limitation of the two-view output in this example. PanoSplatt3R retains the coarse room layout, but its predicted geometry exhibits visible stretching, bending, and locally wavy boundaries around door frames, the bed, and the window. These artifacts are already present with two carefully selected overlapping panoramas; they become a separate scalability concern when many pairwise predictions must be aligned and fused.</p>
+  </section>
 
   <section id="corridor" class="frame-section" aria-labelledby="corridor-title">
     <p class="eyebrow">FRAME 45 · 1.50 SECONDS</p>

@@ -8,6 +8,24 @@
   <meta name="description" content="Anonymous supplementary analyses of direct Gaussian predictors, dataset statistics, and experimental configuration.">
   <title>Experimental Details · Anonymous Supplement</title>
   <link rel="stylesheet" href="style.css?v=experimental-details-v1">
+  <style>
+    .predictor-section h2{font-size:clamp(34px,4.8vw,52px);line-height:1.12;letter-spacing:-.035em;margin-top:12px}
+    .predictor-section h3{font-size:24px;line-height:1.25;margin-top:34px}
+    .predictor-intro{font-size:17px!important;line-height:1.8!important;max-width:950px!important}
+    .predictor-callout{margin:28px 0 34px;padding:24px 26px;background:#edf3ee;border-left:4px solid #346653}
+    .predictor-callout p{margin:9px 0;max-width:950px}
+    .predictor-callout strong{color:#203d30}
+    .predictor-comparisons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:26px 0 30px}
+    .predictor-card{min-width:0;padding:18px;background:#f1f4f0;border:1px solid #dce2dd;border-radius:5px}
+    .predictor-card h4{font-size:19px;line-height:1.35;margin:0 0 12px;color:#273c35}
+    .predictor-card h4 small{display:block;margin-top:4px;font-size:12px;font-weight:400;color:#69766d}
+    .predictor-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .predictor-pair figure{min-width:0}
+    .predictor-pair img{display:block;width:100%;height:auto;aspect-ratio:1;border:1px solid #d5dcd7;border-radius:3px}
+    .predictor-pair figcaption{font-size:11px;color:#526159;padding:7px 0 0}
+    .predictor-card p{font-size:13px!important;line-height:1.65!important;margin:14px 0 0;max-width:none!important}
+    @media(max-width:720px){.predictor-comparisons{grid-template-columns:1fr}.predictor-section h2{font-size:34px}.predictor-pair img{max-width:512px}}
+  </style>
 </head>
 <body>
 <main class="research-notes">
@@ -18,12 +36,35 @@
     <nav class="page-links" aria-label="Supplement sections"><a href="index.html">Video comparisons</a><a href="analysis.html">Cross-room frame analysis</a><a href="#gaussian-predictors">Gaussian predictors</a><a href="#dataset-statistics">Dataset statistics</a><a href="#verification">Verification</a><a href="#training-cost">Training &amp; cost</a></nav>
   </header>
 
-  <section id="gaussian-predictors" class="research-section" aria-labelledby="lrm-title">
+  <section id="gaussian-predictors" class="research-section predictor-section" aria-labelledby="lrm-title">
     <p class="eyebrow">01 · RECONSTRUCTION</p>
-    <h2 id="lrm-title">Incorporating direct Gaussian predictors</h2>
-    <p>Direct Gaussian predictors could provide an alternative initialization for our framework. Their output would still need to be aligned and fused across panorama pairs, with a consistent scale, before scene-level optimization.</p>
-    <h3>What the comparison shows</h3>
+    <h2 id="lrm-title">Direct Gaussian Predictors in Multi-Panorama Scenes</h2>
+    <p class="predictor-intro">Direct Gaussian predictors are a useful initialization option, but their native input contract matters. PanoSplatt3R predicts from <strong>two complete panoramas</strong>; our target scenes can contain around <strong>20 panoramas</strong> distributed across multiple rooms.</p>
+    <div class="predictor-callout">
+      <p><strong>Why this matters for scene-scale use.</strong> Applying a two-panorama predictor repeatedly would produce local Gaussian sets in different coordinate frames. Combining them requires pairwise pose and scale recovery, point-cloud or Gaussian alignment, and a globally consistent fusion step. With many panoramas, small relative-pose errors can accumulate across pairs, particularly when overlap is weak or the scene crosses room boundaries. Our framework instead maintains a scene-level coordinate frame during multi-panorama reconstruction and optimization.</p>
+      <p>The comparison below uses two carefully selected overlapping panoramas and matched target cameras. Even in this favorable two-view setting, PanoSplatt3R retains the coarse room layout while showing visible geometric stretching, bending, and locally wavy boundaries around the doorway, bed, and window. These artifacts motivate subsequent scene-level optimization rather than treating a direct two-view prediction as the finished multi-room representation.</p>
+    </div>
+    <h3>Matched cross-room comparison</h3>
     <p><a href="index.html#case-05">Collection 02</a> provides a shared corridor-to-bedroom camera trajectory. Select PanoSplatt3R or NoPoSplat in the baseline menu to inspect the results alongside ours.</p>
+    <div class="predictor-comparisons" aria-label="Matched frame comparisons">
+      <article class="predictor-card">
+        <h4>Corridor and doorway structure<small>Frame 45 · 1.50 seconds · same target camera</small></h4>
+        <div class="predictor-pair">
+          <figure><a href="figures/aligned-comparison/corridor-ours.png" target="_blank" rel="noopener noreferrer"><img src="figures/aligned-comparison/corridor-ours.png" width="512" height="512" alt="Our corridor rendering at frame 45"></a><figcaption>Ours · scene-level reconstruction</figcaption></figure>
+          <figure><a href="figures/aligned-comparison/corridor-panosplatt3r.png" target="_blank" rel="noopener noreferrer"><img src="figures/aligned-comparison/corridor-panosplatt3r.png" width="512" height="512" alt="PanoSplatt3R corridor rendering at frame 45"></a><figcaption>PanoSplatt3R · two panoramas</figcaption></figure>
+        </div>
+        <p>The PanoSplatt3R result keeps the corridor layout recognizable, but the doorframe and wall boundaries show visible waviness and stretching. Our rendering keeps these structural edges more stable.</p>
+      </article>
+      <article class="predictor-card">
+        <h4>Bedroom layout and object boundaries<small>Frame 120 · 4.00 seconds · same target camera</small></h4>
+        <div class="predictor-pair">
+          <figure><a href="figures/aligned-comparison/bedroom-ours.png" target="_blank" rel="noopener noreferrer"><img src="figures/aligned-comparison/bedroom-ours.png" width="512" height="512" loading="lazy" alt="Our bedroom rendering at frame 120"></a><figcaption>Ours · scene-level reconstruction</figcaption></figure>
+          <figure><a href="figures/aligned-comparison/bedroom-panosplatt3r.png" target="_blank" rel="noopener noreferrer"><img src="figures/aligned-comparison/bedroom-panosplatt3r.png" width="512" height="512" loading="lazy" alt="PanoSplatt3R bedroom rendering at frame 120"></a><figcaption>PanoSplatt3R · two panoramas</figcaption></figure>
+        </div>
+        <p>In the bedroom, the window and bed remain identifiable, but the surrounding geometry is softened and locally distorted in the PanoSplatt3R rendering. The difference is visible at a target pose distinct from both input panoramas.</p>
+      </article>
+    </div>
+    <p class="table-note">These images are full, uncropped frames from the shared 156-camera trajectory. The comparison is qualitative because our method uses broader scene observations and reference views; it isolates the practical behavior of the released two-panorama predictor under its native input setting.</p>
     <div class="table-wrap"><table>
       <caption>Inputs for the direct-prediction comparison</caption>
       <thead><tr><th scope="col">Method</th><th scope="col">Input and reconstruction setting</th></tr></thead>
@@ -33,7 +74,7 @@
         <tr><th scope="row">Ours</th><td>A scene-level reconstruction using broader scene observations and real reference views.</td></tr>
       </tbody>
     </table></div>
-    <p>PanoSplatt3R uses two overlapping original panoramas and the released checkpoint. Known input-camera poses align its native first-camera coordinate frame and recover metric scale; target images are not used to fit the Gaussians or camera alignment. At the corresponding corridor and bedroom views, its output retains the scene layout but shows softer detail and locally uneven edges. Our output preserves clearer doorway, window, and bed contours. See the <a href="analysis.html">matched frames and comparison protocol</a> for the two selected views and input panorama links.</p>
+    <p>PanoSplatt3R uses two overlapping original panoramas and the released checkpoint. Known input-camera poses align its native first-camera coordinate frame and recover metric scale; target images are not used to fit the Gaussians or camera alignment. The full input pair, camera path, and alignment protocol are documented on the <a href="analysis.html">comparison analysis page</a>.</p>
     <p>These observations identify a challenge for pairwise prediction in sparse multi-room scenes. The methods use different input coverage and training conditions, so this is a qualitative comparison, not an equal-input benchmark or a general ranking of LRM architectures.</p>
     <p>NoPoSplat uses its released two-view checkpoint and the input-pose coordinate frame with unit-baseline scale recovery. Its two perspective inputs have narrower coverage than the complete panoramas; the later bedroom views extend beyond their shared input coverage.</p>
     <h3>How it could fit into the framework</h3>
