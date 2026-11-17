@@ -9,6 +9,7 @@ const cases = [
 
 const methods={ours:'Ours','3dgs':'3DGS',difix:'DiFix',artifixer:'ArtiFixer','gsfixer-repair':'GSFixer',panoworld:'PanoWorld',noposplat:'NoPoSplat',panosplatt3r:'PanoSplatt3R'};
 const titles=['Large interiors: preserving fine structures','Bedroom → microwave: detail across a room transition','Living space: windows, furniture and floor detail','Bedroom & passage: preserving room structure','Structural consistency across rooms'];
+const contexts=['Opening clip · first of three scenes','Apartment walkthrough','Opening clip · living space','Opening clip · bedroom','Corridor → bedroom'];
 const $=s=>document.querySelector(s), videos=[$('#ours'),$('#baseline')];
 let selected=Math.max(0,cases.findIndex(c=>c.id===location.hash.slice(1))), generation=0, action=0, ready=false, playing=false, duration=134/30, controller;
 if(!cases.some(c=>c.id===location.hash.slice(1)))selected=1;
@@ -24,6 +25,17 @@ async function mediaURL(src,signal){
 window.addEventListener('pagehide',e=>{if(e.persisted)return;for(const url of mediaCache.values())URL.revokeObjectURL(url);mediaCache.clear();});
 const available=()=>Object.entries(methods).filter(([k])=>selected===4||!['noposplat','panosplatt3r'].includes(k));
 function updateMethods(){const before=$('#method').value;$('#method').replaceChildren(...available().filter(([k])=>k!=='ours').map(([key,name])=>{const o=document.createElement('option');o.value=key;o.textContent=name;return o;}));$('#method').value=available().some(([k])=>k===before)?before:'artifixer';}
+function updateReferences(){
+ const c=cases[selected],context=contexts[selected],count=selected===4?4:2;$('#reference-context').textContent=context;
+ $('.reference-pair').classList.toggle('long-route',selected===4);
+ $('.reference-pair').replaceChildren(...Array.from({length:count},(_,j)=>{
+  const i=j+1,src=`panoramas/${c.id}/reference-${i}.jpg`,figure=document.createElement('figure'),a=document.createElement('a'),img=document.createElement('img'),caption=document.createElement('figcaption');
+  a.id=`reference-link-${i}`;a.href=src;a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('aria-label',`Open scene panorama ${i} at full resolution`);
+  img.id=`reference-image-${i}`;img.src=src;img.width=1600;img.height=800;img.alt=`Scene panorama ${i} · ${context}`;
+  caption.textContent=`Panorama ${i} · Open full image ↗`;a.append(img);figure.append(a,caption);return figure;
+ }));
+ $('#reference-note').textContent='Explore the scene panoramas. Click an image to inspect it at full resolution.';
+}
 function updateTime(){const t=videos[0].currentTime||0;$('#seek').value=String(t/duration*1000);$('#clock').textContent=`${t.toFixed(1)} / ${duration.toFixed(1)} s`;$('#seek').setAttribute('aria-valuetext',`${t.toFixed(1)} of ${duration.toFixed(1)} seconds`);}
 function pause(){action++;playing=false;videos.forEach(v=>v.pause());$('#play').textContent='Play both';if(ready)$('#play').disabled=false;updateTime();}
 function waitPlayable(v,id){return new Promise((resolve,reject)=>{let timer,timeout;const events=['canplay','seeked','progress','error'];const clean=()=>{events.forEach(e=>v.removeEventListener(e,check));clearInterval(timer);clearTimeout(timeout);};const check=()=>{if(id!==action){clean();reject(new DOMException('Cancelled','AbortError'));}else if(v.error){clean();reject(new Error('load'));}else if(v.readyState>=3&&!v.seeking){clean();resolve();}};events.forEach(e=>v.addEventListener(e,check));timer=setInterval(check,100);timeout=setTimeout(()=>{clean();reject(new Error('buffering'));},30000);check();});}
@@ -47,7 +59,7 @@ async function load(keepTime=false){
 $('#play').onclick=()=>playing?pause():play();$('#restart').onclick=()=>{pause();videos.forEach(v=>v.currentTime=0);updateTime();};
 $('#seek').addEventListener('input',e=>{const t=Number(e.target.value)/1000*duration;pause();videos.forEach(v=>v.currentTime=Math.min(t,duration));updateTime();});
 $('#speed').onchange=e=>videos.forEach(v=>v.playbackRate=Number(e.target.value));$('#method').onchange=()=>load(true);
-function showCase(n){selected=n;document.querySelectorAll('[data-case]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.case)===n)));updateMethods();load();}
+function showCase(n){selected=n;document.querySelectorAll('[data-case]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.case)===n)));updateMethods();updateReferences();load();}
 document.querySelectorAll('[data-case]').forEach(b=>b.onclick=()=>{const n=Number(b.dataset.case);if(n===selected)return;history.replaceState(null,'',`#${cases[n].id}`);showCase(n);});
 window.addEventListener('hashchange',()=>{const n=cases.findIndex(c=>c.id===location.hash.slice(1));if(n>=0&&n!==selected)showCase(n);});
 videos[0].addEventListener('ended',pause);videos[0].addEventListener('timeupdate',()=>{if(playing&&!videos.some(v=>v.seeking)&&Math.abs(videos[1].currentTime-videos[0].currentTime)>.09)videos[1].currentTime=videos[0].currentTime;updateTime();});

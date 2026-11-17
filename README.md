@@ -4,7 +4,7 @@ Qualitative indoor reconstruction comparisons: 32 videos across six distinct sce
 
 Collection 02 demonstrates structural consistency as the camera moves through the corridor into a bedroom using our scene-level multi-panorama reconstruction.
 
-The video gallery shows method names, visual observations, and synchronized playback along matched target-camera paths. These qualitative videos supplement the quantitative evaluation. Detailed model configurations are documented in comparison-protocol.json.
+The video gallery shows scene panoramas, method names, visual observations, and synchronized playback along matched target-camera paths. Panorama images can be opened at full resolution. These qualitative videos supplement the quantitative evaluation. Detailed model configurations are documented in comparison-protocol.json.
 
 No analytics, external embeds, author links or third-party fonts are included.
 
