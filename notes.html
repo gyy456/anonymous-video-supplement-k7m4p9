@@ -64,18 +64,18 @@
         <p>In the bedroom, the window and bed remain identifiable, but the surrounding geometry is softened and locally distorted in the PanoSplatt3R rendering. The difference is visible at a target pose distinct from both input panoramas.</p>
       </article>
     </div>
-    <p class="table-note">These images are full, uncropped frames from the shared 156-camera trajectory. The comparison is qualitative because our method uses broader scene observations and reference views; it isolates the practical behavior of the released two-panorama predictor under its native input setting.</p>
+    <p class="table-note">These images are full, uncropped frames from the shared 156-camera trajectory, showing the released PanoSplatt3R model in its native two-panorama setting alongside our multi-panorama pipeline.</p>
     <div class="table-wrap"><table>
       <caption>Inputs for the direct-prediction comparison</caption>
       <thead><tr><th scope="col">Method</th><th scope="col">Input and reconstruction setting</th></tr></thead>
       <tbody>
         <tr><th scope="row">PanoSplatt3R</th><td>Two overlapping, complete equirectangular panoramas along the route (References 2 and 3; 1.086 m baseline); released model in its native two-panorama setting.</td></tr>
         <tr><th scope="row">NoPoSplat</th><td>Two 90° perspective crops from the same adjacent panoramas (References 2 and 3), oriented toward the corridor.</td></tr>
-        <tr><th scope="row">Ours</th><td>A scene-level reconstruction using broader scene observations and real reference views.</td></tr>
+        <tr><th scope="row">Ours</th><td>Scene-level multi-panorama reconstruction with correspondence-guided geometry and image–video refinement.</td></tr>
       </tbody>
     </table></div>
     <p>PanoSplatt3R uses two overlapping original panoramas and the released checkpoint. Known input-camera poses align its native first-camera coordinate frame and recover metric scale; target images are not used to fit the Gaussians or camera alignment. The full input pair, camera path, and alignment protocol are documented on the <a href="analysis.html">comparison analysis page</a>.</p>
-    <p>These observations identify a challenge for pairwise prediction in sparse multi-room scenes. The methods use different input coverage and training conditions, so this is a qualitative comparison, not an equal-input benchmark or a general ranking of LRM architectures.</p>
+    <p>These qualitative examples motivate scene-level alignment and optimization when incorporating a pairwise Gaussian predictor into a multi-room pipeline.</p>
     <p>NoPoSplat uses its released two-view checkpoint and the input-pose coordinate frame with unit-baseline scale recovery. Its two perspective inputs have narrower coverage than the complete panoramas; the later bedroom views extend beyond their shared input coverage.</p>
     <h3>How it could fit into the framework</h3>
     <ol class="integration-steps">

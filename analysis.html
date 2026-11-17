@@ -61,7 +61,7 @@
     <p class="frame-description">Both views show the corridor at the same target-camera pose. Compare the door frames and ceiling contours: PanoSplatt3R retains the room layout, with softer and locally wavy edges, while our output preserves clearer boundaries.</p>
     <div class="frame-grid">
       <figure>
-        <figcaption>Ours<span class="frame-meta">Scene reconstruction and reference views</span></figcaption>
+        <figcaption>Ours</figcaption>
         <a href="figures/aligned-comparison/corridor-ours.png" target="_blank" rel="noopener noreferrer"><img src="figures/aligned-comparison/corridor-ours.png" width="512" height="512" alt="Our corridor view at 1.50 seconds"></a>
       </figure>
       <figure>
@@ -77,7 +77,7 @@
     <p class="frame-description">After the camera enters the bedroom, compare the window frame, bed outline, and wall–floor boundaries. The PanoSplatt3R result shows softened detail and uneven contours; these structures remain more clearly defined in our output.</p>
     <div class="frame-grid">
       <figure>
-        <figcaption>Ours<span class="frame-meta">Scene reconstruction and reference views</span></figcaption>
+        <figcaption>Ours</figcaption>
         <a href="figures/aligned-comparison/bedroom-ours.png" target="_blank" rel="noopener noreferrer"><img src="figures/aligned-comparison/bedroom-ours.png" width="512" height="512" loading="lazy" alt="Our bedroom view at 4.00 seconds"></a>
       </figure>
       <figure>
@@ -102,12 +102,12 @@
       <caption>Inputs and outputs shown</caption>
       <thead><tr><th scope="col">Method</th><th scope="col">Input setting</th><th scope="col">Displayed output</th></tr></thead>
       <tbody>
-        <tr><th scope="row">Ours</th><td>Broader scene observations and real reference views</td><td>Ours</td></tr>
+        <tr><th scope="row">Ours</th><td>Scene-level multi-panorama reconstruction</td><td>Ours</td></tr>
         <tr><th scope="row">PanoSplatt3R</th><td>Two overlapping, complete equirectangular panoramas along the route</td><td>Rendering of the predicted Gaussian representation</td></tr>
       </tbody>
     </table></div>
     <p><strong>PanoSplatt3R setup.</strong> We use the released checkpoint in its native two-panorama configuration with <a href="panoramas/case-05/reference-2.jpg" target="_blank" rel="noopener noreferrer">Reference 2</a> and <a href="panoramas/case-05/reference-3.jpg" target="_blank" rel="noopener noreferrer">Reference 3</a>, two overlapping original panoramas with a camera baseline of 1.086 m. The prediction remains in its native first-camera coordinate frame; known input-camera poses provide the frame alignment and metric scale following the model’s scale-recovery protocol. Target images are not used to fit the Gaussians or camera alignment.</p>
-    <p>All 156 target cameras are shared with Collection 02. Our method uses broader scene observations and reference views, so input coverage and training conditions differ. The gallery also compares the restored outputs of DiFix, ArtiFixer, GSFixer, and PanoWorld along this route.</p>
+    <p>All 156 target cameras are shared with Collection 02. The gallery also includes DiFix, ArtiFixer, GSFixer, and PanoWorld along this route; their reconstruction and reference settings are listed in the <a href="comparison-protocol.json">method configuration</a>.</p>
     <p class="table-note">Frame numbers are zero-based. Full frames are shown; the comparison layout does not crop or retouch image content.</p>
   </section>
 

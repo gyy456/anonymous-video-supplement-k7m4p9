@@ -14,7 +14,7 @@
     120
   ],
   "image_policy": "Full frames extracted from the displayed MP4s; no crop, retouch, target-RGB pose fitting, or per-frame alignment.",
-  "input_policy": "Two adjacent overlapping original panoramas, References 2 and 3. Ours uses broader scene observations and reference views.",
+  "input_policy": "PanoSplatt3R: two adjacent overlapping original panoramas, References 2 and 3. NoPoSplat: two corridor-facing perspective crops from the same panoramas. Ours: scene-level multi-panorama reconstruction.",
   "PanoSplatt3R": {
     "input": "Two complete 1024x512 equirectangular panoramas",
     "checkpoint": "Released model.pth",
@@ -4732,5 +4732,39 @@
       "duration": "5.200000",
       "nb_frames": "156"
     }
-  ]
+  ],
+  "method_settings": {
+    "Collection_02": {
+      "Ours": {
+        "reconstruction": "Correspondence-guided scene-level 3DGS with image–video refinement.",
+        "restoration_references": "Real scene reference views."
+      },
+      "DiFix": {
+        "model": "Released DiFix",
+        "reconstruction_input": "30K real-RGB-optimized 3DGS, constructed for the baseline pipeline."
+      },
+      "ArtiFixer": {
+        "model": "Released ArtiFixer",
+        "reconstruction_input": "30K real-RGB-optimized 3DGS, constructed for the baseline pipeline."
+      },
+      "GSFixer": {
+        "inference": "Overlapping repair windows."
+      },
+      "PanoWorld": {
+        "input": "Fixed eight source panoramas."
+      },
+      "PanoSplatt3R": "See the PanoSplatt3R input and alignment fields.",
+      "NoPoSplat": "See the NoPoSplat input, alignment and coverage fields."
+    },
+    "scope": "Qualitative comparisons of complete method pipelines at matched target cameras; common camera parameters do not imply identical reconstruction or reference selection.",
+    "RealSee_clips": {
+      "restoration_training": "Ziroom adaptation; RealSee scenes used for these clips are excluded from that adaptation."
+    },
+    "Collection_01": {
+      "display_label": "Collection 01",
+      "internal_case_id": "case-02",
+      "Ours_references": "Fixed eight-view reference bank, including the start view and kitchen observations.",
+      "baseline_references": "Original per-method reference selections are retained."
+    }
+  }
 }
