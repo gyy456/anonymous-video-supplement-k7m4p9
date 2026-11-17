@@ -1,10 +1,10 @@
 # Anonymous Video Supplement
 
-Qualitative indoor reconstruction comparisons: 32 videos across six distinct scenes in five collections. Collection 02 compares eight methods; the other collections compare six. Collections 02 and 05 share a scene but show different trajectories. The gallery includes 12 original panorama images and an illustrative brightness-transition flowchart.
+Qualitative indoor reconstruction comparisons: 32 videos across six distinct scenes in five collections. Collection 02 compares eight methods; the other collections compare six. Collections 02 and 05 share a scene but show different trajectories.
 
 Collection 02 demonstrates structural consistency as the camera moves through the corridor into a bedroom using our scene-level multi-panorama reconstruction.
 
-All comparisons use matched target cameras. Restoration baselines follow their released inference pipelines. NoPoSplat receives two perspective crops; PanoSplatt3R receives two adjacent overlapping complete panoramas along the route. Our method uses scene-level multi-panorama reconstruction. These qualitative videos supplement the quantitative evaluation. Reconstruction and reference settings are documented in comparison-protocol.json.
+The video gallery shows method names, visual observations, and synchronized playback along matched target-camera paths. These qualitative videos supplement the quantitative evaluation. Detailed model configurations are documented in comparison-protocol.json.
 
 No analytics, external embeds, author links or third-party fonts are included.
 
